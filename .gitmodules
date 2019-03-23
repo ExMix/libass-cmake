@@ -1,0 +1,12 @@
+[submodule "src/libass"]
+	path = src/libass
+	url = https://github.com/libass/libass.git
+[submodule "src/harfbuzz"]
+	path = src/harfbuzz
+	url = https://github.com/harfbuzz/harfbuzz.git
+[submodule "src/freetype2"]
+	path = src/freetype2
+	url = https://git.savannah.gnu.org/git/freetype/freetype2.git
+[submodule "src/fribidi"]
+	path = src/fribidi
+	url = https://github.com/fribidi/fribidi.git
