@@ -55,7 +55,7 @@ add_custom_target(gen_unicode_version_run
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/fribidi/gen.tab)
 
 add_custom_target(gen_arabic_shaping_tab_run
-        COMMAND gen_arabic_shaping_tab ${COMPRESSION} unidata/UnicodeData.txt unidata/ArabicShaping.txt ${PROJECT_SOURCE_DIR}/src/fribidi/lib/fribidi-unicode-version.h > ${PROJECT_SOURCE_DIR}/src/fribidi/lib/arabic-shaping.tab.i
+        COMMAND gen_arabic_shaping_tab ${COMPRESSION} unidata/UnicodeData.txt ${PROJECT_SOURCE_DIR}/src/fribidi/lib/fribidi-unicode-version.h > ${PROJECT_SOURCE_DIR}/src/fribidi/lib/arabic-shaping.tab.i
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/fribidi/gen.tab)
 
 add_custom_target(gen_bidi_type_tab_run
