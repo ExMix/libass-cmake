@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(libass_cmake C)
+project(libass_cmake C CXX ASM)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY bin/${CMAKE_LIBRARY_ARCHITECTURE})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY bin/${CMAKE_LIBRARY_ARCHITECTURE})
@@ -11,5 +11,6 @@ set(CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY bin/${CMAKE_LIBRARY_ARCHITECTURE})
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(libass STATIC
-        src/main.c)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
+add_subdirectory(cmake)

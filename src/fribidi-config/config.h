@@ -1,0 +1,1 @@
+#include "fribidi-config.h"
