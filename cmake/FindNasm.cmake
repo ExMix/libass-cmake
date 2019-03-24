@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.2)
 
 find_program(NASM_PATH
-        nasm NAMES nasm.exe nasm)
+        NAMES nasm nasm.exe
+        PATHS ENV PATH)
 
 if (NASM_PATH)
     message("Found NASM at ${NASM_PATH}")
