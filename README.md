@@ -23,6 +23,13 @@ Requirements:
 - NASM (some recent version)
 
 ```bash
+# Clone the repo and begin to work
+git clone https://github.com/hozuki/libass-cmake
+cd libass-cmake
+
+# Initialize submodules
+git submodule update --init --recursive
+
 # Create and enter a build directory
 mkdir build
 cd build
