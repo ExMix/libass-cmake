@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.2)
 # Beware:
 # This file runs in build/$build_cfg$/cmake directory, where $build_cfg$ is optional.
 
+set(TARGET_ARCHITECTURE ${CMAKE_OSX_ARCHITECTURES})
+set(CMAKE_OSX_ARCHITECTURES ${CMAKE_SYSTEM_PROCESSOR})
 add_executable(gen_unicode_version ../src/fribidi/gen.tab/gen-unicode-version.c)
 add_executable(gen_arabic_shaping_tab ../src/fribidi/gen.tab/gen-arabic-shaping-tab.c)
 add_executable(gen_bidi_type_tab ../src/fribidi/gen.tab/gen-bidi-type-tab.c ../src/fribidi/gen.tab/packtab.c ../src/fribidi/gen.tab/packtab.h)
@@ -10,6 +12,7 @@ add_executable(gen_joining_type_tab ../src/fribidi/gen.tab/gen-joining-type-tab.
 add_executable(gen_mirroring_tab ../src/fribidi/gen.tab/gen-mirroring-tab.c ../src/fribidi/gen.tab/packtab.c ../src/fribidi/gen.tab/packtab.h)
 add_executable(gen_brackets_tab ../src/fribidi/gen.tab/gen-brackets-tab.c ../src/fribidi/gen.tab/packtab.c ../src/fribidi/gen.tab/packtab.h)
 add_executable(gen_brackets_type_tab ../src/fribidi/gen.tab/gen-brackets-type-tab.c ../src/fribidi/gen.tab/packtab.c ../src/fribidi/gen.tab/packtab.h)
+set(CMAKE_OSX_ARCHITECTURES ${TARGET_ARCHITECTURE})
 
 set(COMPRESSION 2)
 

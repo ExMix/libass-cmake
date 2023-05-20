@@ -7,6 +7,7 @@ set(HARFBUZZ_SOURCE
         ../src/harfbuzz/src/hb-buffer.cc
         ../src/harfbuzz/src/hb-common.cc
         ../src/harfbuzz/src/hb-face.cc
+        ../src/harfbuzz/src/hb-static.cc
         ../src/harfbuzz/src/hb-fallback-shape.cc
         ../src/harfbuzz/src/hb-font.cc
         ../src/harfbuzz/src/hb-ft.cc

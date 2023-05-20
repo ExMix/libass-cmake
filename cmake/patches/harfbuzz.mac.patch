@@ -1,0 +1,179 @@
+diff --git a/src/hb-fallback-shape.cc b/src/hb-fallback-shape.cc
+index 09f02900f..63e12b12e 100644
+--- a/src/hb-fallback-shape.cc
++++ b/src/hb-fallback-shape.cc
+@@ -33,16 +33,16 @@
+ 
+ struct hb_fallback_face_data_t {};
+ 
+-hb_fallback_face_data_t *
+-_hb_fallback_shaper_face_data_create (hb_face_t *face HB_UNUSED)
+-{
+-  return (hb_fallback_face_data_t *) HB_SHAPER_DATA_SUCCEEDED;
+-}
++//hb_fallback_face_data_t *
++//_hb_fallback_shaper_face_data_create (hb_face_t *face HB_UNUSED)
++//{
++//  return (hb_fallback_face_data_t *) HB_SHAPER_DATA_SUCCEEDED;
++//}
+ 
+-void
+-_hb_fallback_shaper_face_data_destroy (hb_fallback_face_data_t *data HB_UNUSED)
+-{
+-}
++//void
++//_hb_fallback_shaper_face_data_destroy (hb_fallback_face_data_t *data HB_UNUSED)
++//{
++//}
+ 
+ 
+ /*
+@@ -51,72 +51,72 @@ _hb_fallback_shaper_face_data_destroy (hb_fallback_face_data_t *data HB_UNUSED)
+ 
+ struct hb_fallback_font_data_t {};
+ 
+-hb_fallback_font_data_t *
+-_hb_fallback_shaper_font_data_create (hb_font_t *font HB_UNUSED)
+-{
+-  return (hb_fallback_font_data_t *) HB_SHAPER_DATA_SUCCEEDED;
+-}
++//hb_fallback_font_data_t *
++//_hb_fallback_shaper_font_data_create (hb_font_t *font HB_UNUSED)
++//{
++//  return (hb_fallback_font_data_t *) HB_SHAPER_DATA_SUCCEEDED;
++//}
+ 
+-void
+-_hb_fallback_shaper_font_data_destroy (hb_fallback_font_data_t *data HB_UNUSED)
+-{
+-}
++//void
++//_hb_fallback_shaper_font_data_destroy (hb_fallback_font_data_t *data HB_UNUSED)
++//{
++//}
+ 
+ 
+ /*
+  * shaper
+  */
+ 
+-hb_bool_t
+-_hb_fallback_shape (hb_shape_plan_t    *shape_plan HB_UNUSED,
+-		    hb_font_t          *font,
+-		    hb_buffer_t        *buffer,
+-		    const hb_feature_t *features HB_UNUSED,
+-		    unsigned int        num_features HB_UNUSED)
+-{
+-  /* TODO
+-   *
+-   * - Apply fallback kern.
+-   * - Handle Variation Selectors?
+-   * - Apply normalization?
+-   *
+-   * This will make the fallback shaper into a dumb "TrueType"
+-   * shaper which many people unfortunately still request.
+-   */
+-
+-  hb_codepoint_t space;
+-  bool has_space = (bool) font->get_nominal_glyph (' ', &space);
+-
+-  buffer->clear_positions ();
+-
+-  hb_direction_t direction = buffer->props.direction;
+-  hb_unicode_funcs_t *unicode = buffer->unicode;
+-  unsigned int count = buffer->len;
+-  hb_glyph_info_t *info = buffer->info;
+-  hb_glyph_position_t *pos = buffer->pos;
+-  for (unsigned int i = 0; i < count; i++)
+-  {
+-    if (has_space && unicode->is_default_ignorable (info[i].codepoint)) {
+-      info[i].codepoint = space;
+-      pos[i].x_advance = 0;
+-      pos[i].y_advance = 0;
+-      continue;
+-    }
+-    (void) font->get_nominal_glyph (info[i].codepoint, &info[i].codepoint);
+-    font->get_glyph_advance_for_direction (info[i].codepoint,
+-					   direction,
+-					   &pos[i].x_advance,
+-					   &pos[i].y_advance);
+-    font->subtract_glyph_origin_for_direction (info[i].codepoint,
+-					       direction,
+-					       &pos[i].x_offset,
+-					       &pos[i].y_offset);
+-  }
+-
+-  if (HB_DIRECTION_IS_BACKWARD (direction))
+-    hb_buffer_reverse (buffer);
+-
+-  buffer->safe_to_break_all ();
+-
+-  return true;
+-}
++// hb_bool_t
++// _hb_fallback_shape (hb_shape_plan_t    *shape_plan HB_UNUSED,
++// 		    hb_font_t          *font,
++// 		    hb_buffer_t        *buffer,
++// 		    const hb_feature_t *features HB_UNUSED,
++// 		    unsigned int        num_features HB_UNUSED)
++// {
++//   /* TODO
++//    *
++//    * - Apply fallback kern.
++//    * - Handle Variation Selectors?
++//    * - Apply normalization?
++//    *
++//    * This will make the fallback shaper into a dumb "TrueType"
++//    * shaper which many people unfortunately still request.
++//    */
++
++//   hb_codepoint_t space;
++//   bool has_space = (bool) font->get_nominal_glyph (' ', &space);
++
++//   buffer->clear_positions ();
++
++//   hb_direction_t direction = buffer->props.direction;
++//   hb_unicode_funcs_t *unicode = buffer->unicode;
++//   unsigned int count = buffer->len;
++//   hb_glyph_info_t *info = buffer->info;
++//   hb_glyph_position_t *pos = buffer->pos;
++//   for (unsigned int i = 0; i < count; i++)
++//   {
++//     if (has_space && unicode->is_default_ignorable (info[i].codepoint)) {
++//       info[i].codepoint = space;
++//       pos[i].x_advance = 0;
++//       pos[i].y_advance = 0;
++//       continue;
++//     }
++//     (void) font->get_nominal_glyph (info[i].codepoint, &info[i].codepoint);
++//     font->get_glyph_advance_for_direction (info[i].codepoint,
++// 					   direction,
++// 					   &pos[i].x_advance,
++// 					   &pos[i].y_advance);
++//     font->subtract_glyph_origin_for_direction (info[i].codepoint,
++// 					       direction,
++// 					       &pos[i].x_offset,
++// 					       &pos[i].y_offset);
++//   }
++
++//   if (HB_DIRECTION_IS_BACKWARD (direction))
++//     hb_buffer_reverse (buffer);
++
++//   buffer->safe_to_break_all ();
++
++//   return true;
++// }
+diff --git a/src/hb.hh b/src/hb.hh
+index 5b66ba85d..6dfd10f35 100644
+--- a/src/hb.hh
++++ b/src/hb.hh
+@@ -298,7 +298,8 @@ struct _hb_alignof
+ 
+ #ifndef HB_INTERNAL
+ # if !defined(HB_NO_VISIBILITY) && !defined(__MINGW32__) && !defined(__CYGWIN__) && !defined(_MSC_VER) && !defined(__SUNPRO_CC)
+-#  define HB_INTERNAL __attribute__((__visibility__("hidden")))
++//#  define HB_INTERNAL __attribute__((__visibility__("hidden")))
++#  define HB_INTERNAL
+ # elif defined(__MINGW32__)
+    /* We use -export-symbols on mingw32, since it does not support visibility attributes. */
+ #  define HB_INTERNAL
